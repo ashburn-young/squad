@@ -172,3 +172,28 @@ Brady directed: stop distributing via npx github:. All distribution is now npm-o
 
 **Status:** 4 corrections applied. History is now clean and consistent with decisions.md npm-only policy.
 
+### 📌 Publish automation constraint (2026-03-07): 2FA requires manual OTP input
+**Requested by:** Brady — publish squad-sdk@0.8.21 and squad-cli@0.8.21 to npm.
+
+**Blocker discovered:** npm publish requires 2FA (one-time password) for @bradygaster account. Automated publish not possible without OTP.
+
+**Root cause:**
+- User .npmrc has valid auth token (`//registry.npmjs.org/:_authToken`)
+- Account has 2FA enabled (security best practice)
+- npm publish with `--auth-type=legacy` triggers OTP prompt: `This operation requires a one-time password from your authenticator.`
+- No environment variable or config bypasses 2FA (by design — publish is a sensitive operation)
+
+**Workaround:** Manual publish with OTP:
+```bash
+cd packages/squad-sdk && npm publish --access public --otp=<CODE>
+cd packages/squad-cli && npm publish --access public --otp=<CODE>
+```
+
+**Implications for automation:**
+- CI/CD workflows publishing to npm must use NPM_TOKEN with automation scope (granular access tokens)
+- Personal account publishes require manual OTP (non-automatable)
+- Existing .squad-publish.yml and .squad-insider-publish.yml workflows likely use secrets.NPM_TOKEN (automation token)
+- Manual publish from local machine requires 2FA (this session)
+
+**Status:** Prepared tarball (packages/squad-sdk/bradygaster-squad-sdk-0.8.21.tgz), documented publish commands with OTP requirement, escalated to Brady for manual completion.
+
