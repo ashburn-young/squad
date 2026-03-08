@@ -61,27 +61,13 @@ const base = import.meta.env.BASE_URL;
 <div id="sidebar-overlay" class="fixed inset-0 z-40 bg-black/50 hidden lg:hidden"></div>
 
 <script>
-  const toggle = document.getElementById('sidebar-toggle');
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebar-overlay');
-
-  function openSidebar() {
-    sidebar?.classList.remove('-translate-x-full');
-    overlay?.classList.remove('hidden');
-  }
 
   function closeSidebar() {
     sidebar?.classList.add('-translate-x-full');
     overlay?.classList.add('hidden');
   }
-
-  toggle?.addEventListener('click', () => {
-    if (sidebar?.classList.contains('-translate-x-full')) {
-      openSidebar();
-    } else {
-      closeSidebar();
-    }
-  });
 
   overlay?.addEventListener('click', closeSidebar);
 </script>
