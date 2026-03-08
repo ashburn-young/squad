@@ -83,7 +83,7 @@ git commit -m "chore: migrate .ai-team/ → .squad/"
 
 **Timeline:** `.ai-team/` support continues through v0.6.0. Migration becomes required in v1.0.0.
 
-**Full details:** See the [Migration Guide](../migration/v0.5.0-squad-rename.md).
+**Full details:** See the [Migration Guide](../get-started/migration.md).
 
 ---
 

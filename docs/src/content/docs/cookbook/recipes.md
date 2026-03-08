@@ -217,4 +217,4 @@ What did the team accomplish last session? Any blockers?
 
 - [CLI Reference](../reference/cli.md) — Every command and config file
 - [SDK Reference](../reference/sdk.md) — Programmatic API
-- [Migration & Troubleshooting](./migration.md) — Upgrades and fixes
+- [Migration & Troubleshooting](../get-started/migration.md) — Upgrades and fixes

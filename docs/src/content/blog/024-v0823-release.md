@@ -657,8 +657,8 @@ npx squad start
 - [SDK-First Mode Guide](../sdk-first-mode.md)
 - [SDK Reference](../reference/sdk.md)
 - [Azure Function Sample](../../samples/azure-function-squad/)
-- [Remote Squad Mode Docs](../remote-squad-mode.md)
-- [CHANGELOG](../../CHANGELOG.md)
+- [Remote Squad Mode Docs](../features/remote-control.md)
+- [CHANGELOG](https://github.com/bradygaster/squad/blob/main/CHANGELOG.md)
 
 **Related Issues:**
 - #194 — SDK-First Mode

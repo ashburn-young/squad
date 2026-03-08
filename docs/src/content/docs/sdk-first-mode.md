@@ -833,4 +833,4 @@ export default defineSquad({
 
 - [SDK Reference](./reference/sdk.md) — all SDK exports
 - [Routing Guide](./features/routing.md) — deep dive on routing tiers
-- [Governance & Hooks](./sdk/tools-and-hooks.md) — hook pipeline and governance
+- [Governance & Hooks](./reference/sdk.md) — hook pipeline and governance

@@ -172,7 +172,7 @@ I'm starting a new project. Here's what I'm building: a React + Node API with us
 
 Squad proposes a team (Lead, Frontend, Backend, Tester, Scribe), you say yes, and they're ready. Describe the work. They execute it. Messages, decisions, and history persist in `.squad/` — commit it, share it, iterate on it.
 
-**Full guide:** [`README.md`](../../README.md) | **Samples:** [`samples/`](../../samples/)
+**Full guide:** [`README.md`](https://github.com/bradygaster/squad/blob/main/README.md) | **Samples:** [`samples/`](https://github.com/bradygaster/squad/tree/main/samples)
 
 ## The Version Jump: v0.5.4 → v0.8.18
 
@@ -183,13 +183,13 @@ You might notice the version leap. Here's why:
 - **v0.7.x** — Three development waves (orchestration, observability, docs)
 - **v0.8.x (current)** — Unified, public, semver-stable
 
-You're not jumping over broken versions. You're joining the stable channel of a mature codebase. Read the [CHANGELOG.md](../../CHANGELOG.md) if you want the full arc.
+You're not jumping over broken versions. You're joining the stable channel of a mature codebase. Read the [CHANGELOG.md](https://github.com/bradygaster/squad/blob/main/CHANGELOG.md) if you want the full arc.
 
 ## Links
 
 - **Public repository:** [`bradygaster/squad`](https://github.com/bradygaster/squad)
 - **Migration guide:** [`docs/get-started/migration.md`](../get-started/migration.md)
-- **README with full install methods:** [`README.md`](../../README.md)
+- **README with full install methods:** [`README.md`](https://github.com/bradygaster/squad/blob/main/README.md)
 - **Samples:** [`samples/`](../../samples/) — hello-squad, knock-knock, rock-paper-scissors, streaming-chat, hook-governance, and more
 - **Getting started guide:** `docs/guide/getting-started.md` (coming soon)
 

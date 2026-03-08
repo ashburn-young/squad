@@ -522,7 +522,7 @@ npm install -g @bradygaster/squad-cli@0.8.17
 - **TypeScript strict mode:** Full type safety across the SDK and CLI.
 - **Semver fix:** Version format now follows the semver spec (`0.8.18-preview.N` instead of `0.8.18.N-preview`).
 
-For the full list of changes, see the [CHANGELOG](../CHANGELOG.md).
+For the full list of changes, see the [CHANGELOG](https://github.com/bradygaster/squad/blob/main/CHANGELOG.md).
 
 ---
 

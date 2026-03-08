@@ -130,4 +130,4 @@ squad subsquads activate frontend
 squad start
 ```
 
-Full docs: [Scaling with SubSquads](../scenarios/scaling-workstreams.md) | [Multi-Codespace Setup](../scenarios/multi-codespace.md) | [SubSquads PRD](../specs/streams-prd.md)
+Full docs: [Scaling with SubSquads](../scenarios/scaling-workstreams.md) | [Multi-Codespace Setup](../scenarios/multi-codespace.md) | [SubSquads PRD](https://github.com/bradygaster/squad/blob/main/docs/_internal/specs/streams-prd.md)

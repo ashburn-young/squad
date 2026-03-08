@@ -788,7 +788,7 @@ Start building.
 - **SDK on npm:** [@bradygaster/squad-sdk](https://www.npmjs.com/package/@bradygaster/squad-sdk)
 - **CLI on npm:** [@bradygaster/squad-cli](https://www.npmjs.com/package/@bradygaster/squad-cli)
 - **Migration Guide:** [docs/get-started/migration.md](../get-started/migration.md)
-- **Samples:** [samples/README.md](../../samples/README.md)
+- **Samples:** [samples/README.md](https://github.com/bradygaster/squad/blob/main/samples/README.md)
 - **Issues:** [github.com/bradygaster/squad/issues](https://github.com/bradygaster/squad/issues)
 
 ---
