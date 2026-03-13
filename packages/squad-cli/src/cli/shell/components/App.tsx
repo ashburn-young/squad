@@ -452,7 +452,7 @@ export const App: React.FC<AppProps> = ({ registry, renderer, teamRoot, version,
           auto-sized when idle to avoid blank space below the agent panel. */}
       <Box flexDirection="column" {...(processing ? { height: liveContentHeight, overflow: 'hidden' as const } : {})}>
         <AgentPanel agents={agents} streamingContent={streamingContent} />
-        <MessageStream messages={messages} agents={agents} streamingContent={streamingContent} processing={processing} activityHint={activityHint || mentionHint} agentActivities={agentActivities} thinkingPhase={thinkingPhase} maxVisible={maxVisible} hasConversation={hasConversation} />
+        <MessageStream messages={messages} agents={agents} streamingContent={streamingContent} processing={processing} activityHint={activityHint || mentionHint} agentActivities={agentActivities} thinkingPhase={thinkingPhase} hasConversation={hasConversation} />
       </Box>
       {/* Fixed input box at bottom — Copilot/Claude style */}
       <Box marginTop={1} borderStyle={noColor ? undefined : 'round'} borderColor={noColor ? undefined : 'cyan'} paddingX={1}>

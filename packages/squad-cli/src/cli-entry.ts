@@ -172,7 +172,6 @@ async function main(): Promise<void> {
     await checkNodeSqlite();
     // Fire-and-forget update check — non-blocking, never delays shell startup
     import('./cli/self-update.js').then(m => m.notifyIfUpdateAvailable(VERSION)).catch(() => {});
-    const { runShell } = await lazyRunShell();
     await runShell();
     return;
   }
