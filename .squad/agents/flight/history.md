@@ -61,3 +61,7 @@ Created `.squad/skills/content-triage/SKILL.md` to codify the boundary heuristic
 **Implementation plan written to:** `.squad/decisions/inbox/flight-329-344-implementation-plan.md`
 
 📌 **Team update (2026-03-24):** Ambient personal squad design reviewed and approved with 5 gaps identified and resolved. Implementation plan broken into 4 PRs across EECOM (SDK + CLI), Procedures (governance), and Sims (tests). MVP path = SDK foundation + governance updates. Phased to avoid one giant PR.
+
+### Session 2 Summary (2026-03-22)
+
+Wave 1 architecture work on #329/#344: validated 20KB personal squad design doc, identified and patched 5 gaps, authored 19-task implementation plan spanning 4 future PRs. Implementation not yet started — deferred to future session. EECOM assigned Phase 1–2 (SDK + CLI), Procedures assigned Phase 3 (governance), Sims assigned Phase 4 (tests).

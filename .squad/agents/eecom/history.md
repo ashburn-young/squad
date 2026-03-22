@@ -141,3 +141,35 @@ Implemented Flight's privacy-first adoption monitoring strategy on PR #326 branc
 **Key pattern:** Both resolveModel implementations follow identical principle: explicit overrides (user choice) are sacred; economy only affects computed auto-selection.
 
 **PR:** #500 branch `squad/500-economy-mode`
+
+### node:sqlite Hard-Fail Fix (#502) (2026-03-21)
+
+**Context:** Workshop participants (reported by Doron Ben Elazar) were blocked by `ERR_UNKNOWN_BUILTIN_MODULE` crashes. `node:sqlite` (used by Copilot SDK for session storage) requires Node 22.5.0+. The existing soft-warn-and-continue approach let users limp into a cryptic crash.
+
+**Root cause:** `engines.node` said `>=20` but `node:sqlite` needs `>=22.5.0`. The pre-flight check warned but didn't exit, so users saw confusing failures deep in SDK code.
+
+**Fix:**
+1. **cli-entry.ts:** Replaced `try { await import('node:sqlite') } catch { warn }` with a synchronous version check that calls `process.exit(1)` immediately with a clear upgrade message. Removed the now-dead `checkNodeSqlite()` function and its call site.
+2. **doctor.ts:** Added `checkNodeVersion()` to `squad doctor` — exported with optional version param for testability.
+3. **package.json (×3):** Corrected `engines.node` to `>=22.5.0` so npm/npx warn at install time.
+4. **Tests:** 5 new tests for `checkNodeVersion()` (Node 20.x fail, 22.4.x fail, 22.5.0 pass, 24.x pass, current env pass). Updated check-count assertion.
+
+**Pattern:** git branch confusion — `git checkout -b` switches HEAD but edits to files on wrong branch are lost when switching. Always confirm `git branch` before making file edits. File edits don't follow you to a new branch if you forgot to switch first.
+
+**PR:** #506 branch `squad/502-node-sqlite-dependency`
+
+### Rate Limit Recovery UX (#464) (2026-03-22)
+
+**Context:** Rate limit errors showed generic message with no actionable recovery. Brady directive: offer model switching + economy mode as recovery options.
+
+**Implementation:**
+1. `error-messages.ts` — `rateLimitGuidance()` shows actual reason + 3 recovery options (retry time, `squad economy on`, config.json model override)
+2. `shell/index.ts` — Detects rate limits via `instanceof RateLimitError` or regex; writes `.squad/rate-limit-status.json`
+3. `doctor.ts` — `checkRateLimitStatus()` reads status file and warns if recent
+4. 36 new tests — all pass
+
+**PR:** #505 `squad/464-rate-limit-ux` — merged (rebased after #504)
+
+### Session 2 Summary (2026-03-22)
+
+Executed 3 tasks across 2 waves: economy mode (#500, PR #504), node:sqlite fix (#502, PR #506), rate limit UX (#464, PR #505). All PRs merged to dev.

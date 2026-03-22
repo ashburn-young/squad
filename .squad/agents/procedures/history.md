@@ -104,3 +104,7 @@
 
 **Catalog audit finding:** `claude-sonnet-4.6`, `gpt-5.4`, `gpt-5.3-codex` appear in model-selection SKILL.md fallback chains but are absent from squad.agent.md's "Valid models" catalog. Documented in economy-mode governance proposal for Flight to address.
 
+### Session 2 Summary (2026-03-22)
+
+Wave 1 governance work on #500 and #344: authored economy-mode skill (`SKILL.md`), economy-mode governance proposal, and personal-squad governance proposal. Caught `claude-sonnet-4.6` missing from valid models catalog. PR #503 (`squad/500-344-governance`) merged to dev.
+
