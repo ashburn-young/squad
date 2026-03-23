@@ -289,13 +289,38 @@ export function ensureGitattributes(dest: string): string[] {
   }
   if (added.length > 0) {
     const suffix = content.length > 0 && !content.endsWith('\n') ? '\n' : '';
-    fs.writeFileSync(filePath, content + suffix + added.join('\n') + '\n');
+    try {
+      fs.writeFileSync(filePath, content + suffix + added.join('\n') + '\n');
+    } catch (err: unknown) {
+      if (err instanceof Error && 'code' in err && (err as NodeJS.ErrnoException).code === 'EPERM') {
+        warn('Could not update .gitattributes (read-only). Add merge=union entries manually.');
+        return [];
+      }
+      throw err;
+    }
   }
   return added;
 }
 
 /**
- * Ensure .gitignore has required entries (idempotent)
+ * Check whether an existing gitignore line already covers a candidate entry
+ * via parent-directory matching (e.g. `.squad/` covers `.squad/log/`).
+ */
+function isAlreadyCoveredByParent(entry: string, lines: string[]): boolean {
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('!')) continue;
+    const parent = trimmed.endsWith('/') ? trimmed : trimmed + '/';
+    if (entry.startsWith(parent) && entry !== trimmed) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Ensure .gitignore has required entries (idempotent).
+ * Skips entries already covered by a parent path (e.g. `.squad/` covers `.squad/log/`).
  */
 export function ensureGitignore(dest: string): string[] {
   const filePath = path.join(dest, '.gitignore');
@@ -303,11 +328,12 @@ export function ensureGitignore(dest: string): string[] {
   if (fs.existsSync(filePath)) {
     content = fs.readFileSync(filePath, 'utf8');
   }
+  const existingLines = content.split('\n');
   const added: string[] = [];
   for (const entry of GITIGNORE_ENTRIES) {
-    if (!content.includes(entry)) {
-      added.push(entry);
-    }
+    if (content.includes(entry)) continue;
+    if (isAlreadyCoveredByParent(entry, existingLines)) continue;
+    added.push(entry);
   }
   if (added.length > 0) {
     const suffix = content.length > 0 && !content.endsWith('\n') ? '\n' : '';
@@ -551,7 +577,11 @@ export async function runUpgrade(dest: string, options: UpgradeOptions = {}): Pr
   
   console.log();
   info(`Upgrade complete: v${fromLabel} → v${cliVersion}`);
-  dim('Never touches user state: team.md, decisions/, agents/*/history.md');
+  if (migrationsApplied.some(m => m.toLowerCase().includes('scrub email'))) {
+    dim('Privacy scrub applied to .squad/ files (email addresses removed)');
+  } else {
+    dim('Preserves user state: team.md, decisions/, agents/*/history.md');
+  }
   console.log();
   
   return {
