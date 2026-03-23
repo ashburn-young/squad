@@ -285,7 +285,7 @@ git push origin dev
 **Fix:**
 
 ```bash
-npx github:bradygaster/squad upgrade
+squad upgrade
 git add .github/workflows/
 git commit -m "chore: restore Squad workflows"
 git push origin dev

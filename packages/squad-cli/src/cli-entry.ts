@@ -181,7 +181,7 @@ async function main(): Promise<void> {
     console.log(`                    [copilot flags...]`);
     console.log(`             Examples: start --tunnel --yolo`);
     console.log(`                       start --tunnel --model claude-sonnet-4`);
-    console.log(`                       start --tunnel --command "agency copilot"`);
+    console.log(`                       start --tunnel --command "gh copilot"`);
     console.log(`  ${BOLD}nap${RESET}        Context hygiene (compress, prune, archive .squad/ state)`);
     console.log(`             Usage: nap [--deep] [--dry-run]`);
     console.log(`             Flags: --deep (thorough cleanup), --dry-run (preview only)`);

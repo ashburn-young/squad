@@ -12,12 +12,6 @@ Everything you need to run Squad from the command line — commands, shell inter
 ```bash
 # Global install (recommended)
 npm install -g @bradygaster/squad-cli
-
-# One-off with npx
-npx @bradygaster/squad-cli init
-
-# Latest from GitHub (bleeding edge)
-squad init
 ```
 
 ---
