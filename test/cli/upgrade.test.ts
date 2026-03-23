@@ -6,7 +6,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdir, rm, readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
-import { existsSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync, readFileSync, rmSync, chmodSync } from 'fs';
 import { randomBytes } from 'crypto';
 import { runInit } from '@bradygaster/squad-cli/core/init';
 import { runUpgrade, ensureGitattributes, ensureGitignore, ensureDirectories } from '@bradygaster/squad-cli/core/upgrade';
@@ -226,6 +226,24 @@ describe('CLI: upgrade command', () => {
     const second = readFileSync(join(dir, '.gitattributes'), 'utf8');
     expect(second).toBe(first);
     rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('ensureGitattributes warns and returns empty on read-only file (EPERM)', () => {
+    const dir = join(TEST_ROOT, 'gitattr-test-eperm');
+    mkdirSync(dir, { recursive: true });
+    const filePath = join(dir, '.gitattributes');
+    // Write a partial file, then make it read-only
+    writeFileSync(filePath, '# existing content\n');
+    chmodSync(filePath, 0o444);
+    try {
+      const added = ensureGitattributes(dir);
+      // Should return empty — graceful degradation, no crash
+      expect(added).toEqual([]);
+    } finally {
+      // Restore write permission so cleanup works
+      chmodSync(filePath, 0o644);
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 
   /* ── ensureGitignore ─────────────────────────────────────────── */
